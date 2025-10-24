@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<title>ប្រព័ន្ធគ្រប់គ្រងហាងកាហ្វេ</title>
+<style>
+body {
+  font-family: "Khmer OS Siemreap", sans-serif;
+  background: #f4f7fb;
+  padding: 20px;
+}
+.container {
+  max-width: 750px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+h2 {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button.add-btn {
+  width: 100%;
+  background: #007bff;
+  color: white;
+  margin-top: 10px;
+}
+button.add-btn:hover { background: #0056b3; }
+
+button.delete-btn {
+  background: #dc3545;
+  color: white;
+}
+button.delete-btn:hover { background: #b52a37; }
+
+button.clear-btn {
+  width: 100%;
+  background: #ff8800;
+  color: white;
+  margin-top: 10px;
+}
+button.clear-btn:hover { background: #cc6e00; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+.total {
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: right;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>☕ ប្រព័ន្ធគ្រប់គ្រងហាងកាហ្វេ ( Bell Li Cofee)</h2>
+
+  <label>ជ្រើសរើសមុខទំនិញ:</label>
+  <select id="product">
+    <option value="">-- ជ្រើសរើសមុខទំនិញ --</option>
+    <option value="Belli" data-price="1.5">កាហ្វេ ($1.5)</option>
+    <option  value="Americano" data-price="2">តែទឹកដោះគោ ($2)</option>
+    <option value="Ice Latte" data-price="2.5">អេស្ព្រេសសូ ($2.5)</option>
+    <option value="Cappuccino" data-price="3">នំ ($3)</option>
+    <option value="Mocha" data-price="2.5">Mocha ($2.5)</option>
+    <option value="Chocolate" data-price="1.2">នំបុ័ង ($1.2)</option>
+  </select>
+
+  <label>ចំនួន (Qty):</label>
+  <input type="number" id="qty" placeholder="ឧទាហរណ៍៖ 2">
+
+  <button class="add-btn" onclick="addItem()">បន្ថែមទៅតារាង</button>
+
+  <table id="orderTable">
+    <thead>
+      <tr>
+        <th>ល.រ</th>
+        <th>ទំនិញ</th>
+        <th>តម្លៃ ($)</th>
+        <th>ចំនួន</th>
+        <th>សរុប ($)</th>
+        <th >សកម្មភាព</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div class="total" id="totalDisplay">សរុបសរុប: $0.00</div>
+
+  <button class="clear-btn" onclick="clearAll()">លុបទិន្នន័យទាំងអស់</button>
+</div>
+
+<script>
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+function render() {
+  const tbody = document.querySelector("#orderTable tbody");
+  tbody.innerHTML = "";
+  let grandTotal = 0;
+
+  orders.forEach((item, index) => {
+    const total = item.price * item.qty;
+    grandTotal += total;
+
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${index + 1}</td>
+      <td>${item.name}</td>
+      <td>$${item.price.toFixed(2)}</td>
+      <td>${item.qty}</td>
+      <td>$${total.toFixed(2)}</td>
+      <td><button class="delete-btn" onclick="deleteItem(${index})">លុប</button></td>
+    `;
+    tbody.appendChild(row);
+  });
+
+  document.getElementById("totalDisplay").innerText = "សរុបសរុប: $" + grandTotal.toFixed(2);
+  localStorage.setItem("orders", JSON.stringify(orders));
+}
+
+function addItem() {
+  const productSelect = document.getElementById("product");
+  const qty = Number(document.getElementById("qty").value);
+  const name = productSelect.value;
+  const price = Number(productSelect.selectedOptions[0]?.getAttribute("data-price"));
+
+  if (!name || !qty) {
+    alert("សូមជ្រើសរើសទំនិញ និង បញ្ចូលចំនួន!");
+    return;
+  }
+
+  orders.push({ name, price, qty });
+  render();
+
+  document.getElementById("product").value = "";
+  document.getElementById("qty").value = "";
+}
+
+function deleteItem(index) {
+  if (confirm("តើអ្នកប្រាកដថាចង់លុបទំនិញនេះមែនទេ?")) {
+    orders.splice(index, 1);
+    render();
+  }
+}
+
+function clearAll() {
+  if (confirm("តើអ្នកចង់លុបទិន្នន័យទាំងអស់មែនទេ?")) {
+    orders = [];
+    render();
+  }
+}
+
+render();
+</script>
+
+</body>
+</html>
