@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="web1.css">
+</head>
+<body>
+    
+    <header>
+    <div class="navbar">
+      <div class="logo">PressMart.</div>
+      <ul class="nav-menu">
+        <li><a href="#" class="active" onclick="showSection('home')">Home</a></li>
+        <li><a href="#" onclick="showSection('shop')">Shop</a></li>
+        <li><a href="#" onclick="showSection('pages')">Pages</a></li>
+        <li><a href="#" onclick="showSection('blog')">Blog</a></li>
+        <li><a href="#" onclick="showSection('elements')">Elements</a></li>
+        <li><a href="#" onclick="showSection('buy')">Buy</a></li>
+      </ul>
+      <div class="icons">
+        <i class="fas fa-search"></i>
+        <i class="far fa-heart"></i>
+        <i class="fas fa-shopping-cart"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Page Sections ===== -->
+  <main>
+    <section id="home" class="content-section active">
+      <h1>Welcome to PressMart!</h1>
+      <p>Discover the best Men's and Women's Fashion here.</p>
+    </section>
+
+    <section id="shop" class="content-section">
+      <h1>Shop</h1>
+      <p>Browse our latest products and enjoy exclusive discounts.</p>
+    </section>
+
+    <section id="pages" class="content-section">
+      <h1>Pages</h1>
+      <p>Learn more about us, contact info, and our policies.</p>
+    </section>
+
+    <section id="blog" class="content-section">
+      <h1>Blog</h1>
+      <p>Read fashion tips, style guides, and trend updates.</p>
+    </section>
+
+    <section id="elements" class="content-section">
+      <h1>Elements</h1>
+      <p>Buttons, Icons, and Components used in our design system.</p>
+    </section>
+
+    <section id="buy" class="content-section">
+      <h1>Buy Now</h1>
+      <p>Complete your purchase securely and get fast delivery.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 PressMart. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function showSection(sectionId) {
+      // Hide all sections
+      document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+      // Show selected
+      document.getElementById(sectionId).classList.add('active');
+      // Update active link
+      document.querySelectorAll('.nav-menu a').forEach(link => link.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+  </script>
+
+</body>
+<header>
+    <div class="top-bar">
+      <div class="contact">
+        <span><i class="fas fa-envelope"></i> support@pressmart.com</span>
+        <span><i class="fas fa-phone"></i>+855 015206887</span>
+      </div>
+      <div class="account">
+        <a href="#">Welcome to Our Store!</a> | <a href="#">English</a> | <a href="#">$ Dollar (US)</a>
+      </div>
+    </div>
+
+    <nav class="navbar">
+      <div class="logo">PressMart.</div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">Pages</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Elements</a></li>
+        <li><a href="#">Buy</a></li>
+      </ul>
+      <div class="icons">
+        <i class="fas fa-search"></i>
+        <i class="far fa-heart"></i>
+        <i class="fas fa-shopping-cart"></i>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="subtitle">Season Sale</p>
+      <h1>MEN'S FASHION</h1>
+      <p class="offer">Min. 35–70% Off</p>
+      <div class="buttons">
+        <a href="#" class="btn-primary">SHOP NOW</a>
+        <a href="#" class="btn-secondary">READ MORE</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://i.pinimg.com/736x/e7/29/69/e72969d31e4cb39819800a27ccf91197.jpg" alt="Men's Fashion">
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="feature"><i class="fas fa-truck"></i> Free Shipping</div>
+    <div class="feature"><i class="fas fa-lock"></i> Secure Payment</div>
+    <div class="feature"><i class="fas fa-undo"></i> 100% Money Back</div>
+    <div class="feature"><i class="fas fa-headset"></i> Online Support</div>
+  </section>
+
+  <!-- Product Categories -->
+  <section class="promo">
+    <div class="promo-box large">
+      <img src="https://i.pinimg.com/736x/56/95/c8/5695c85a9df6f65ef97e1b7722678ea1.jpg" alt="">
+      <div class="promo-text">
+        <h3>Women's Style</h3>
+        <p>Up to 70% Off</p>
+        <a href="#">Shop Now</a>
+      </div>
+    </div>
+    <div class="promo-small">
+      <div class="promo-box">
+        <img src="https://i.pinimg.com/736x/09/a7/d0/09a7d0b79292a41fae2acef08a17a541.jpg" alt="">
+        <div class="promo-text">
+          <h4>Handbag</h4>
+          <p>25% Off</p>
+        </div>
+      </div>
+      <div class="promo-box">
+        <img src="https://i.pinimg.com/1200x/8b/21/91/8b219187bb318372a85c669404dbaaff.jpg" alt="">
+        <div class="promo-text">
+          <h4>Watch</h4>
+          <p>45% Off</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured">
+    <h2>Featured Products</h2>
+    <div class="product-grid">
+      <div class="product">
+        <img src="https://i.pinimg.com/736x/f1/73/96/f173962205bce2082703013e1576702e.jpg" alt="">
+        <h4>Tan Solid Laptop Backpack</h4>
+        <p>$149.00 – $185.00</p>
+      </div>
+      <div class="product">
+        <img src="https://i.pinimg.com/736x/46/d7/98/46d7985d9cb5f97cfbd08342b7a2f84d.jpg" alt="">
+        <h4>Brown Solid Biker Jacket</h4>
+        <p>$110.00 – $120.00</p>
+      </div>
+      <div class="product">
+        <img src="https://i.pinimg.com/736x/8f/98/de/8f98de1bf41e9a26397c808cf3ce45ec.jpg" alt="">
+        <h4>Men Brown Solid Mid-Top Boots</h4>
+        <p>$115.00</p>
+      </div>
+      <div class="product">
+        <img src="https://i.pinimg.com/736x/81/86/fa/8186fa2e6e60c6776e032a5046836538.jpg" alt="">
+        <h4>Petite Olive Green Solid Top</h4>
+        <p>$49.00</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Chea Seyha</p>
+  </footer>
+</html>
